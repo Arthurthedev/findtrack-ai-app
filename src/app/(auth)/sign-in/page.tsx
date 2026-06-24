@@ -1,5 +1,5 @@
 import { AuthLayout } from "../_components/auth-layout";
-import ArrowIcon from "../../../assets/arrow-icon.png";
+import ArrowIcon from "../../../assets/auth/arrow-icon.png";
 import Image from "next/image";
 import { inputClass } from "../_styles/input";
 

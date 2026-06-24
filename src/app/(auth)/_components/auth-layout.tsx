@@ -1,4 +1,4 @@
-import MoneyLogo from "../../../assets/money-logo.png";
+import MoneyLogo from "../../../assets/auth/money-logo.png";
 import Image from "next/image";
 import Link from "next/link";
 
