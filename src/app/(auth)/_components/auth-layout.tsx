@@ -39,7 +39,12 @@ export const AuthLayout = ({
                 <div className="mt-10 text-center">
                     <p className="text-[#9F9FA9] text-sm">
                         {footerText}
-                        <Link href={footerHref} className="ml-1 text-[#9333EA] font-semibold hover:underline">{footerLinkText}</Link>
+                        <Link
+                            href={footerHref}
+                            className="ml-1 text-[#9333EA] font-semibold hover:underline"
+                        >
+                            {footerLinkText}
+                        </Link>
                     </p>
                 </div>
             </div>
