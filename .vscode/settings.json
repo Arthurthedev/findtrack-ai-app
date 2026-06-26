@@ -1,0 +1,6 @@
+{
+  // Desativa o aviso "can be written as" e outros alertas de linting chatos do Tailwind
+  "tailwindCSS.lint.suggestCanonicalClasses": "ignore",
+  "tailwindCSS.lint.invalidApply": "ignore",
+  "tailwindCSS.lint.cssConflict": "ignore"
+}
