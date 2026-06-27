@@ -1,7 +1,6 @@
 import MoneyLogo from "../../../assets/auth/money-logo.png";
 import Image from "next/image";
 import Link from "next/link";
-
 interface AuthLayoutProps {
     title: string;
     description: string;
@@ -10,6 +9,7 @@ interface AuthLayoutProps {
     footerLinkText: string;
     footerHref: string;
 }
+
 
 export const AuthLayout = ({
     children,
@@ -33,7 +33,7 @@ export const AuthLayout = ({
                         {title}
                     </h1>
                     <p className="text-[#9F9FA9] text-sm">{description}</p>
-                </div>
+                </div>  
                 {children}
 
                 <div className="mt-10 text-center">
