@@ -10,16 +10,16 @@ function formatBRL(value: number): string {
     }).format(value);
 }
 
-export interface BalanceCardProps {
+interface BalanceCardProps {
     balance: number;
-    receitas: number;
-    despesas: number;
+    revenues: number;
+    expenses: number;
 }
 
 export default function BalanceCard({
     balance,
-    receitas,
-    despesas,
+    revenues,
+    expenses,
 }: BalanceCardProps) {
     return (
         <section
@@ -28,13 +28,11 @@ export default function BalanceCard({
         >
             {/* Overlays decorativos (círculos suaves) */}
             <div
-                className="pointer-events-none absolute rounded-full bg-white/10"
-                style={{ width: 256, height: 256, top: 46, right: -80 }}
+                className="pointer-events-none absolute rounded-full bg-white/10 w-[256px] h-[256px] top-[46px] right-[-80px]"
                 aria-hidden
             />
             <div
-                className="pointer-events-none absolute rounded-full bg-white/5"
-                style={{ width: 192, height: 192, left: -48, top: -48 }}
+                className="pointer-events-none absolute rounded-full bg-white/5 w-[192px] h-[192px] left-[-48px] top-[-48px]"
                 aria-hidden
             />
 
@@ -83,7 +81,7 @@ export default function BalanceCard({
                         </span>
                     </div>
                     <p className="text-xl font-semibold leading-[1.4] text-white">
-                        {formatBRL(receitas)}
+                        {formatBRL(revenues)}
                     </p>
                 </div>
 
@@ -102,7 +100,7 @@ export default function BalanceCard({
                         </span>
                     </div>
                     <p className="text-xl font-semibold leading-[1.4] text-white">
-                        {formatBRL(despesas)}
+                        {formatBRL(expenses)}
                     </p>
                 </div>
             </div>
