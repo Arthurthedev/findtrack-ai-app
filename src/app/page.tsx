@@ -2,6 +2,7 @@ import BalanceCard from "./_components/balance-card";
 import FinancialMetricCard from "./_components/financial-metric-card";
 import Header from "./_components/header";
 import Sidebar from "./_components/sidebar";
+import { ChartCard } from "./_components/chart-card";
 
 export default function Home() {
     return (
@@ -21,6 +22,15 @@ export default function Home() {
                         <FinancialMetricCard
                             economy="+12%"
                             economyValue={120.0}
+                        />
+                    </section>
+                    <section className="grid lg:grid-cols-2 grid-cols-1 gap-6">
+
+                        <ChartCard
+                            depositsTotal={1000}
+                            expensesTotal={500}
+                            investmentsTotal={500}
+                            balance={1000}
                         />
                     </section>
                 </main>
