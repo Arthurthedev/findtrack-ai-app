@@ -1,19 +1,19 @@
-import { DonutChart } from './donut-chart'
-import { MonthSelect } from './month-select'
+import DonutChart from "./donut-chart";
+import { MonthSelect } from "./month-select";
 
 export interface DonutChartProps {
-    depositsTotal: number
-    expensesTotal: number
-    investmentsTotal: number
-    balance: number
+    depositsTotal: number;
+    expensesTotal: number;
+    investmentsTotal: number;
+    balance: number;
 }
 
-export const ChartCard = ({
+export default function ChartCard({
     depositsTotal,
     expensesTotal,
     investmentsTotal,
     balance,
-}: DonutChartProps) => {
+}: DonutChartProps) {
     return (
         <div className="bg-[#161B26] py-9 px-8 rounded-3xl text-white">
             <div className="flex items-center justify-between">
@@ -30,5 +30,5 @@ export const ChartCard = ({
                 />
             </div>
         </div>
-    )
+    );
 }

@@ -9,7 +9,7 @@ export interface DonutChartProps {
     balance: number
 }
 
-export function DonutChart({
+export default function DonutChart({
     depositsTotal,
     expensesTotal,
     investmentsTotal,
