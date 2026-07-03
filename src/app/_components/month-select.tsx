@@ -1,7 +1,7 @@
 export const MonthSelect = () => {
 
     return (
-      <select>
+      <select className="text-black">
         <option value="01">Janeiro</option>
         <option value="02">Fevereiro</option>
         <option value="03">Março</option>
