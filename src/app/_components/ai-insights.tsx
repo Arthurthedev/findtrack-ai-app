@@ -4,7 +4,7 @@ import bulbIcon from "@/src/assets/ai-insights/bulb-icon.png";
 import insightsIcon from "@/src/assets/ai-insights/insights-icon.png";
 import refreshIcon from "@/src/assets/ai-insights/refresh-icon.png";
 
-export function AiInsights() {
+export default function AiInsights() {
     return (
         <div className="text-white space-y-6">
             <div className="flex items-center gap-2">
