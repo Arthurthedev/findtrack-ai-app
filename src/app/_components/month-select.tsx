@@ -1,7 +1,19 @@
-export const MonthSelect = () => {
+'use client'
+import { useRouter, useSearchParams } from "next/navigation";
 
+export const MonthSelect = () => {
+  const router = useRouter()
+  const params = useSearchParams(
+  )
+
+  const currentMonth = params.get('month') ?? '01'
+
+  function handleChange(e: React.ChangeEvent<HTMLSelectElement>){
+    router.push(`/?month=${e.target.value}`)
+
+  }
     return (
-      <select className="text-black">
+      <select value={currentMonth} onChange={handleChange} className="text-black">
         <option value="01">Janeiro</option>
         <option value="02">Fevereiro</option>
         <option value="03">Março</option>

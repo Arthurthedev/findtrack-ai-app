@@ -3,10 +3,20 @@ import FinancialMetricCard from "./_components/financial-metric-card";
 import Header from "./_components/header";
 import Sidebar from "./_components/sidebar";
 import ChartCard from "./_components/chart-card";
-import  AiInsights  from "./_components/ai-insights";
-import  RecentTransactions  from "./_components/recent-transactions";
+import AiInsights from "./_components/ai-insights";
+import RecentTransactions from "./_components/recent-transactions";
+import { getDashboard } from "./_data/get-dashboard";
+import dayjs from "dayjs";
 
-export default function Home() {
+interface DashboardPageProps {
+    searchParams: {
+        month?: string;
+    };
+}
+export default async function Home({ searchParams }: DashboardPageProps) {
+    const params = await searchParams;
+    const month = params.month ?? dayjs().format("MM");
+    const data = await getDashboard(month);
     return (
         <div className="flex min-h-screen bg-[#0F111A]">
             <Sidebar />
@@ -16,9 +26,9 @@ export default function Home() {
                     <section className="grid lg:grid-cols-3 grid-cols-1 gap-6">
                         <div className="lg:col-span-2 col-span-1">
                             <BalanceCard
-                                balance={1000}
-                                revenues={500}
-                                expenses={500}
+                                balance={data.balance}
+                                revenues={data.depositsTotal}
+                                expenses={data.expensesTotal}
                             />
                         </div>
                         <FinancialMetricCard
@@ -29,10 +39,10 @@ export default function Home() {
                     <section className="flex gap-8">
                         <div className="flex-1">
                             <ChartCard
-                                depositsTotal={1000}
-                                expensesTotal={500}
-                                investmentsTotal={500}
-                                balance={1000}
+                                depositsTotal={data.depositsTotal}
+                                expensesTotal={data.expensesTotal}
+                                investmentsTotal={data.investmentsTotal}
+                                balance={data.balance}
                             />
                         </div>
                         <div className="flex-1">
@@ -41,7 +51,7 @@ export default function Home() {
                     </section>
 
                     <section>
-                        <RecentTransactions/>
+                        <RecentTransactions />
                     </section>
                 </main>
             </div>
