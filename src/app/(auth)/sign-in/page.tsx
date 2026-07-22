@@ -1,9 +1,71 @@
+"use client";
 import { AuthLayout } from "../_components/auth-layout";
 import ArrowIcon from "../../../assets/auth/arrow-icon.png";
 import Image from "next/image";
 import { inputClass } from "../_styles/input";
 
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { authClient } from "@/src/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+const signInFormSchema = z.object({
+    email: z
+        .string()
+        .min(1, "O email é obrigatório.")
+        .regex(z.regexes.email, "Informe um email válido."),
+    password: z.string().min(8, "Senha incorreta."),
+});
+
+type SignInFormData = z.infer<typeof signInFormSchema>;
+
 export default function SingInPage() {
+    const [apiError, setApiError] = useState<string>("");
+    const router = useRouter();
+
+    const {
+        register,
+        reset,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+    } = useForm<SignInFormData>({
+        resolver: zodResolver(signInFormSchema),
+        defaultValues: {
+            email: undefined,
+            password: undefined,
+        },
+        mode: "onBlur",
+    });
+
+    const onSubmit = async (data: SignInFormData) => {
+        try {
+            console.log(data);
+            const { data: result, error: err } = await authClient.signIn.email({
+                email: data.email,
+                password: data.password,
+                callbackURL: "/",
+            });
+
+            if (err) {
+                setApiError(
+                    err.message ?? "Erro ao entrar na conta. Tente outro email.",
+                );
+                return;
+            }
+
+            if (result) router.push("/");
+            reset();
+        } catch (error) {
+            setApiError(
+                error instanceof Error
+                    ? error.message
+                    : "Erro inesperado. Tente novamente",
+            );
+        }
+    };
+
     return (
         <AuthLayout
             title="Bem-vindo de volta"
@@ -12,7 +74,7 @@ export default function SingInPage() {
             footerLinkText="Criar conta"
             footerHref="/sign-up"
         >
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                 <label className="block text-sm text-zinc-300 mb-2">
                     E-mail
                 </label>
@@ -20,7 +82,13 @@ export default function SingInPage() {
                     type="email"
                     placeholder="seu@email.com"
                     className={inputClass}
+                    {...register("email")}
                 />
+                {errors.email && (
+                    <p className="text-xs text-red-500">
+                        {errors.email.message}
+                    </p>
+                )}
                 <label className="block text-sm text-zinc-300 mb-2">
                     Senha
                 </label>
@@ -28,19 +96,31 @@ export default function SingInPage() {
                     type="password"
                     placeholder="••••••••"
                     className={inputClass}
+                    {...register("password")}
                 />
-            </form>
+                {errors.password && (
+                    <p className="text-xs text-red-500">
+                        {errors.password.message}
+                    </p>
+                )}
 
-            <button
-                type="submit"
-                className="w-full bg-[#9333EA] flex items-center justify-center rounded-2xl py-4 gap-2 font-semibold cursor-pointer"
-            >
-                <span>Entrar</span>
-                <Image
-                    src={ArrowIcon}
-                    alt="imagem de seta da página de login"
-                />
-            </button>
+                {apiError && (
+                    <p className="text-sm text-red-500 text-center">
+                        {apiError}
+                    </p>
+                )}
+                <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#9333EA] flex items-center justify-center rounded-2xl py-4 gap-2 font-semibold cursor-pointer"
+                >
+                    <span>{isSubmitting ? 'Entrando...' : "Entrar"}</span>
+                    <Image
+                        src={ArrowIcon}
+                        alt="imagem de seta da página de login"
+                    />
+                </button>
+            </form>
         </AuthLayout>
     );
 }

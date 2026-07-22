@@ -20,7 +20,7 @@ export const AuthLayout = ({
     title,
 }: AuthLayoutProps) => {
     return (
-        <section className="h-screen flex items-center justify-center">
+        <section className="h-screen flex items-center justify-center bg-[#0A0A0A]">
             <div className="bg-[#181818] w-full max-w-md p-8 rounded-2xl text-white">
                 <div className="flex flex-col items-center mb-8">
                     <div className="bg-[#9333EA] h-16 w-16 flex items-center justify-center rounded-2xl mb-6">
