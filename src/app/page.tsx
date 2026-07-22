@@ -21,7 +21,7 @@ export default async function Home({ searchParams }: DashboardPageProps) {
         <div className="flex min-h-screen bg-[#0F111A]">
             <Sidebar />
             <div className="flex flex-1 flex-col">
-                <Header userName="Arthur Moraes Thurler" />
+                <Header userName={data.session.user.name} />
                 <main className="p-8 space-y-8">
                     <section className="grid lg:grid-cols-3 grid-cols-1 gap-6">
                         <div className="lg:col-span-2 col-span-1">
@@ -51,7 +51,7 @@ export default async function Home({ searchParams }: DashboardPageProps) {
                     </section>
 
                     <section>
-                        <RecentTransactions />
+                        <RecentTransactions/>
                     </section>
                 </main>
             </div>

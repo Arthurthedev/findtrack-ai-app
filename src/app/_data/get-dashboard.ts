@@ -1,7 +1,23 @@
 import { prisma } from "@/src/lib/prisma";
 import { TransactionType } from "@prisma/client";
 
+import { auth } from "@/src/lib/auth";
+import { redirect } from "next/navigation";
+import { headers } from "next/headers";
+
+
 export const getDashboard = async (month: string) => {
+    const session = await auth.api.getSession({
+        headers: await headers()
+    })
+
+    const userID = session?.user.id
+
+    if (!userID) {
+        redirect("/sign-in")
+    }
+
+
     const year = 2026;
 
     const startOfMonth = new Date(`${year}-${month}-01T00:00:00.000Z`);
@@ -13,6 +29,7 @@ export const getDashboard = async (month: string) => {
     );
 
     const where = {
+        userID,
         date: {
             gte: startOfMonth,
             lt: startOfNextMonth,
@@ -111,7 +128,7 @@ export const getDashboard = async (month: string) => {
         balance,
         transactionsTotal,
         typePercentage,
-        totalExpensePerCategory
-
+        totalExpensePerCategory,
+        session
     }
 };

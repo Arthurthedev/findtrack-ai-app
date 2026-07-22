@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 
 import dashboardIcon from "@/src/assets/sidebar/dashboard-icon.png";
 import transactionsIcon from "@/src/assets/sidebar/transactions-icon.png";
-import logoutIcon from "@/src/assets/sidebar/logout-icon..png";
 import logo from "@/src/assets/sidebar/logo-icon.png";
+import { Logout } from "./logout";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -49,15 +49,7 @@ export default function Sidebar() {
             </nav>
 
             <div className="border-t border-[#1E293B] px-6 py-6">
-                <a
-                    href="#"
-                    className="flex items-center gap-3 rounded-xl px-4 py-3 text-[#94A3B8]"
-                >
-                    <Image src={logoutIcon} alt="icone de saída" />
-                    <span className="text-base font-medium leading-normal text-center">
-                        Sair
-                    </span>
-                </a>
+                <Logout/>
             </div>
         </aside>
     );
