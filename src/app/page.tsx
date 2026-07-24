@@ -46,7 +46,15 @@ export default async function Home({ searchParams }: DashboardPageProps) {
                             />
                         </div>
                         <div className="flex-1">
-                            <AiInsights />
+                            <AiInsights 
+                            month={month}
+                            year={2026}
+                            depositsTotal={data.depositsTotal}
+                            expensesTotal={data.expensesTotal}
+                            investmentsTotal={data.investmentsTotal}
+                            balance={data.balance}
+                            totalExpensePerCategory={data.totalExpensePerCategory}
+                            />
                         </div>
                     </section>
 
