@@ -48,7 +48,7 @@ export default async function RecentTransactions() {
           ))}
           <div className="p-4 bg-slate-800/20 text-center">
             <Link
-              className="text-primary text-sm hover:underline"
+              className="text-primary text-sm hover:underline text-white"
               href="/transactions"
             >
               Ver todo o histórico
