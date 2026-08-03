@@ -72,9 +72,7 @@ export default function BalanceCard({
                         <Image
                             src={iconReceitas}
                             alt="icone de receitas"
-                            width={14}
-                            height={20}
-                            className="h-3.5 w-3.5 shrink-0 object-contain"
+                            className="h-[20px] w-[14px] shrink-0 object-contain"
                         />
                         <span className="text-xs font-normal leading-[1.33] text-[#F3E8FF]">
                             Receitas
@@ -91,9 +89,7 @@ export default function BalanceCard({
                         <Image
                             src={iconDespesas}
                             alt="icone de despesas"
-                            width={14}
-                            height={20}
-                            className="h-3.5 w-3.5 shrink-0 object-contain"
+                            className="h-[20px] w-[14px] shrink-0 object-contain"
                         />
                         <span className="text-xs font-normal leading-[1.33] text-[#F3E8FF]">
                             Despesas

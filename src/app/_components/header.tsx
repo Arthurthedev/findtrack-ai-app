@@ -43,9 +43,7 @@ export default function Header({userName}: headerProps) {
                     <Image
                         src={userAvatar}
                         alt="Avatar do usuário"
-                        width={38}
-                        height={38}
-                        className="h-10 w-10 rounded-full object-cover"
+                        className="h-[38px] w-[38px] rounded-full object-cover"
                     />
                 </div>
             </div>

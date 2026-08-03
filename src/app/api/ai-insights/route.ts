@@ -53,7 +53,6 @@ export async function POST(req: Request) {
     let body: Body;
     try {
         body = await req.json();
-        console.log("DADOS RECEBIDOS DO FRONTEND:", body);
     } catch {
         return NextResponse.json(
             { error: "Corpo da requisição inválido." },
