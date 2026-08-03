@@ -32,8 +32,8 @@ export default async function Home({ searchParams }: DashboardPageProps) {
                             />
                         </div>
                         <FinancialMetricCard
-                            economy="+12%"
-                            economyValue={120.0}
+                            economy={data.economyPercentage}
+                            economyValue={data.economyBalance}
                         />
                     </section>
                     <section className="flex gap-8">

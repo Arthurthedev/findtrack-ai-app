@@ -28,6 +28,64 @@ export const getDashboard = async (month: string) => {
             : `${year}-${String(Number(month) + 1).padStart(2, "0")}-01T00:00:00.000Z`,
     );
 
+    const startOfLastMonth = new Date(
+        month === "01"
+          ? `${year - 1}-12-01T00:00:00.000Z`
+          : `${year}-${String(Number(month) - 1).padStart(2, "0")}-01T00:00:00.000Z`
+      );
+
+    const lastMonthWhere = {
+        userID,
+        date: {
+            gte: startOfLastMonth,
+            lt: startOfMonth
+        }
+    }
+
+    const lastDeposits = Number(
+        (
+            await prisma.transaction.aggregate({
+                where: {
+                    ...lastMonthWhere,
+                    type: "DEPOSIT",
+                },
+                _sum: {
+                    amount: true,
+                },
+            })
+        )._sum.amount ?? 0,
+    );
+
+    const lastInvestments = Number(
+        (
+            await prisma.transaction.aggregate({
+                where: {
+                    ...lastMonthWhere,
+                    type: "INVESTMENT",
+                },
+                _sum: {
+                    amount: true,
+                },
+            })
+        )._sum.amount ?? 0,
+    );
+
+    const lastExpenses = Number(
+        (
+            await prisma.transaction.aggregate({
+                where: {
+                    ...lastMonthWhere,
+                    type: "EXPENSE",
+                },
+                _sum: {
+                    amount: true,
+                },
+            })
+        )._sum.amount ?? 0,
+    );
+
+    const lastBalance = lastDeposits - lastInvestments - lastExpenses
+
     const where = {
         userID,
         date: {
@@ -79,6 +137,14 @@ export const getDashboard = async (month: string) => {
     );
 
     const balance = depositsTotal - investmentsTotal - expensesTotal //saldo da conta
+    const economyBalance = balance - lastBalance //Economia em comparação ao mês anterior
+    
+
+    const economyPercentage =
+  lastBalance === 0
+    ? 0
+    : Math.round((economyBalance / lastBalance) * 100)
+    
 
     const transactionsTotal = Number(
         (
@@ -126,6 +192,8 @@ export const getDashboard = async (month: string) => {
         investmentsTotal,
         expensesTotal,
         balance,
+        economyBalance,
+        economyPercentage,
         transactionsTotal,
         typePercentage,
         totalExpensePerCategory,
