@@ -136,9 +136,11 @@ export default function AiInsights(props: AiInsightsProps) {
             ) : (
                 <>
                     {topCategory && topCategoryAmount && (
-                        <div className="bg-[#161b26] p-6 rounded-2xl border border-[#1d293d] flex gap-4">
+                        <div className="bg-[#161b26] p-6 rounded-2xl border border-[#1d293d] flex items-center gap-4">
                             <div className="bg-purple-100 dark:bg-purple-500/20 p-3 rounded-xl">
-                                <Image src={insightsIcon} alt="Insights Icon" />
+                                <Image 
+                                src={insightsIcon} 
+                                alt="Insights Icon" />
                             </div>
                             <div>
                                 <p className="text-slate-400 text-sm">

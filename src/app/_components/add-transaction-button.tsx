@@ -238,7 +238,7 @@ export const AddTransactionButton = () => {
                                 </p>
                             )}
                         </div>
-                        <DialogFooter className="gap-4 border-none bg-[#1E293B]">
+                        <DialogFooter className="gap-4 border-none bg-[#1E293B] flex flex-row">
                             <button className="border border-[#CAD5E2] rounded-lg w-1/3 py-2.5 cursor-pointer">
                                 Cancelar
                             </button>

@@ -36,7 +36,7 @@ export default async function Home({ searchParams }: DashboardPageProps) {
                             economyValue={data.economyBalance}
                         />
                     </section>
-                    <section className="flex gap-8">
+                    <section className="flex flex-col lg:flex-row gap-8">
                         <div className="flex-1">
                             <ChartCard
                                 depositsTotal={data.depositsTotal}

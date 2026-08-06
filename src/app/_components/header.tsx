@@ -30,7 +30,7 @@ export default function Header({userName}: headerProps) {
         <header
             className={`${inter.className} flex h-20 items-center justify-between border-b border-[#1E293B] bg-[#0F111A] px-8`}
         >
-            <div className="flex flex-col">
+            <div className="flex flex-col mt-1">
                 <h2 className="text-lg font-semibold leading-7 text-[#F1F5F9]">
                     {greeting}
                 </h2>

@@ -37,12 +37,12 @@ export default function BalanceCard({
             />
 
             {/* Topo: Saldo total + ícone decorativo */}
-            <div className="relative flex flex-row items-start justify-between gap-4">
+            <div className="relative flex flex-row items-center sm:items-start justify-between gap-4">
                 <div className="flex flex-col gap-1">
                     <p className="text-sm font-medium leading-[1.43] text-[#F3E8FF]">
                         Saldo total
                     </p>
-                    <p className="text-[2.5rem] font-bold leading-none tracking-[-0.025em] text-white">
+                    <p className="text-[1.8rem] sm:text-[2.5rem] font-bold leading-none tracking-[-0.025em] text-white">
                         {formatBRL(balance)}
                     </p>
                 </div>
@@ -50,9 +50,7 @@ export default function BalanceCard({
                     <Image
                         src={decorative}
                         alt="icone de carteira"
-                        width={54}
-                        height={63}
-                        className="h-10 w-9 object-contain"
+                        className="h-5 w-5 sm:h-10 sm:w-9 object-contain"
                     />
                 </div>
             </div>
@@ -65,7 +63,7 @@ export default function BalanceCard({
             />
 
             {/* Receitas e Despesas em linha */}
-            <div className="flex flex-row flex-wrap items-stretch justify-stretch gap-4">
+            <div className="flex flex-row gap-10 md:items-stretch md:justify-stretch md:gap-4">
                 {/* Receitas */}
                 <div className="flex min-w-0 flex-1 flex-col gap-1">
                     <div className="flex flex-row items-center gap-2">
